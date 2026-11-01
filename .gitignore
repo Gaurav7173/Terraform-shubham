@@ -1,0 +1,29 @@
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+*.terraform.lock.hcl
+crash.log
+crash.*.log
+
+# AWS files
+aws/
+awscliv2.zip
+
+# SSH keys - public and private
+ssh-terra-key
+ssh-terra-key.pub
+*.pem
+*.key
+
+# Mac
+.DS_Store
+
+# Secrets
+.env
+.env.*
+
+# VS Code
+.vscode/
