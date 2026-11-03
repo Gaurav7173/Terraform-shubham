@@ -66,11 +66,14 @@ egress{
 #ec2 instance
 
 resource aws_instance my_instance{
-    key_name=aws_key_pair.my_key.key_name
-    for_each=tomap({
+
+     for_each=tomap({
         automate-instance-1="automate-instance-1"
         automate-instance-2="automate-instance-2"
     })
+    depends_on=[aws_security_group.my_security_group,aws_key_pair.my_key]
+    key_name=aws_key_pair.my_key.key_name
+   
     security_groups=[aws_security_group.my_security_group.name]
     instance_type=var.ec2_instance_type
     ami=var.ec2_ami_id
