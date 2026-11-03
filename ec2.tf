@@ -67,6 +67,7 @@ egress{
 
 resource aws_instance my_instance{
     key_name=aws_key_pair.my_key.key_name
+    count=3
     security_groups=[aws_security_group.my_security_group.name]
     instance_type=var.ec2_instance_type
     ami=var.ec2_ami_id
