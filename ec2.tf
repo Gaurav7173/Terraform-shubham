@@ -2,7 +2,7 @@
 #key-pair for login
 
 resource aws_key_pair my_key {
-    key_name="ssh-terra-key"
+    key_name="{var.env}-ssh-terra-key"
     public_key=file("ssh-terra-key.pub")
   
 }
@@ -14,7 +14,7 @@ resource aws_default_vpc default {
 }
 
 resource aws_security_group my_security_group{
-    name="automate-sg"
+    name="{var.env}-automate-sg"
     description="Allow SSH and HTTP"
     vpc_id=aws_default_vpc.default.id #interpolation syntax
 
@@ -59,7 +59,7 @@ egress{
 }
 
     tags={
-        Name="automate-sg"
+        Name="{var.env}-automate-sg"
     }
 }
 
@@ -71,6 +71,7 @@ resource aws_instance my_instance{
         automate-instance-1="automate-instance-1"
         automate-instance-2="automate-instance-2"
         automate-instance-3="automate-instance-3"
+        automate-instance-4="automate-instance-4"
     })
     depends_on=[aws_security_group.my_security_group,aws_key_pair.my_key]
     key_name=aws_key_pair.my_key.key_name
@@ -87,6 +88,7 @@ resource aws_instance my_instance{
     }
     tags={
         Name=each.key
+        Environment = var.env
     }
 }
 
