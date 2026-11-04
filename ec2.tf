@@ -2,7 +2,7 @@
 #key-pair for login
 
 resource aws_key_pair my_key {
-    key_name="ssh-terra-key"
+    key_name="{var.env}-ssh-terra-key"
     public_key=file("ssh-terra-key.pub")
   
 }
@@ -14,7 +14,7 @@ resource aws_default_vpc default {
 }
 
 resource aws_security_group my_security_group{
-    name="automate-sg"
+    name="{var.env}-automate-sg"
     description="Allow SSH and HTTP"
     vpc_id=aws_default_vpc.default.id #interpolation syntax
 
