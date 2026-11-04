@@ -70,6 +70,7 @@ resource aws_instance my_instance{
      for_each=tomap({
         automate-instance-1="automate-instance-1"
         automate-instance-2="automate-instance-2"
+        automate-instance-3="automate-instance-3"
     })
     depends_on=[aws_security_group.my_security_group,aws_key_pair.my_key]
     key_name=aws_key_pair.my_key.key_name
@@ -89,8 +90,3 @@ resource aws_instance my_instance{
     }
 }
 
-resource "aws_instance" "my_new_instance"{
-    ami= "unknown"
-    instance_type= "unknown"
-
-}
