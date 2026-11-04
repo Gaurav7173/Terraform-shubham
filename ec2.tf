@@ -85,11 +85,7 @@ resource aws_instance my_instance{
     }
     tags={
         Name=each.key
+        Environment = var.env
     }
 }
 
-resource "aws_instance" "my_new_instance"{
-    ami= "unknown"
-    instance_type= "unknown"
-
-}
